@@ -1,0 +1,22 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+    
+    <div class="bgimg w3-container w3-padding-large w3-grey">
+        <h4 id="upload"><b>Upload Code Review</b></h4>
+
+        <hr class="w3-opacity">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-section">
+            <label>Project Name</label>
+            <input class="w3-input w3-border" type="text" name="Name" required>
+          </div>
+          <div class="w3-section">
+            <label>Code Review</label>
+            <input class="w3-input w3-border" type="text" name="Email" required>
+          </div>
+          <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Measure Usefulness</button>
+        </form>
+    </div>
+
+{% endblock %}    

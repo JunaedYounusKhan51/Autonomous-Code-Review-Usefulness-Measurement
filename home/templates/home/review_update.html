@@ -1,0 +1,43 @@
+{% extends "./template.html" %}
+
+{% block page_data %}    
+    <div class="bgimg w3-container w3-padding-large w3-grey">
+        <h4><b>Update this Review Usefulness</b></h4>
+
+        <hr class="w3-opacity">
+        <form action="/projects/review/update/" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="review_id" value="{{ this_review.id }}">
+          <div class="w3-section">
+            <label>Review Id: </label>
+            <b>{{ this_review.review_id  }}</b>
+          </div>
+          <div class="w3-section">
+            <label>Review: </label>
+            <b>{{ this_review.review  }}</b>
+          </div>
+          <div class="w3-section">
+            <label>Reviewer Name: </label>
+            <b>{{ this_review.reviewer  }}</b>
+          </div>
+          <div class="w3-section">
+            <label>Time of Review: </label>
+            <b>{{ this_review.review_time  }}</b>
+          </div>
+          <div class="w3-section">
+            <label>Usefulness</label>
+            <select class="w3-input w3-border" name="usefulness">
+              {% for usefulness in usefulnesss %}
+                {% if usefulness == this_review.usefulness %}            
+                  <option value="{{ usefulness }}" selected>{{ usefulness }}</option>
+                {% else %}
+                  <option value="{{ usefulness }}">{{ usefulness }}</option>
+                {% endif %}                          
+              {% endfor %}
+            </select>
+          </div>                    
+          <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Update Usefulness</button>
+        </form>
+    </div>
+
+{% endblock %}          

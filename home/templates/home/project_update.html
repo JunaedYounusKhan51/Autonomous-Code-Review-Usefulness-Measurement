@@ -1,0 +1,44 @@
+{% extends "./template.html" %}
+
+{% block page_data %}    
+    <div class="bgimg w3-container w3-padding-large w3-grey">
+        <h4 id="add_projects"><b>Update this Project</b></h4>
+
+        <hr class="w3-opacity">
+        <form action="/project/update/" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="project_id" value="{{ this_project.id }}">
+          <div class="w3-section">
+            <label>Project Name</label>
+            <input class="w3-input w3-border" type="text" name="name" value="{{ this_project.name }}" required>
+          </div>
+          <div class="w3-section">
+            <label>Project Url</label>
+            <input class="w3-input w3-border" type="text" name="url" value="{{ this_project.url }}" required>
+          </div>
+          <div class="w3-section">
+            <label>Project Description</label>
+            <textarea class="w3-input w3-border" rows="5" name="description">{{ this_project.description }}</textarea>
+          </div>
+          <div class="w3-section">
+            <label>Project Authors</label>
+            <select class="w3-input w3-border" multiple size="5" name="authors">
+              {% for author in authors %}            
+                <option value="{{ author.id }}" {{ author.flag }}>{{ author.userid }}</option>                          
+              {% endfor %}
+            </select>
+          </div>
+          <div class="w3-section">
+            <label>Project Image</label>
+            <input type="file" name="image">        
+          </div>
+          <div class="w3-section">
+            <label>Project Status</label>
+            <input type="radio" name="status" value="A" {% if this_project.status == 'A' %} checked {% endif %}> Active &nbsp;&nbsp;
+            <input type="radio" name="status" value="I" {% if this_project.status == 'I' %} checked {% endif %}> Inactive
+          </div>
+          <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Update Project</button>
+        </form>
+    </div>
+
+{% endblock %}          

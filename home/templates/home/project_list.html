@@ -1,0 +1,34 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+
+  <div class="bgimg w3-container w3-padding-large w3-grey" style = "min-height: 500px">
+      <h4 id="upload"><b>All Projects</b></h4>
+       <hr class="w3-opacity">
+      <div class="w3-bar-block" style="width: 50%;">
+        <table id="mytable">
+            <thead>  
+              <tr>
+                <th > Sl No.</th>
+                <th > Project Name</th>
+                <th style = "text-align: center;"> option </th>
+              </tr>
+            </thead>
+            <tbody>    
+              {% for project in projects %}
+                <tr>
+                  <td style="text-align: center"> ( {{ forloop.counter }} ) </td>
+                  <td style="text-align: center"><a href="/project/{{ project.id }}" class="w3-bar-item w3-button w3-padding" >{{ project.name }}</a></td>
+                  <td style="text-align: center"><button onclick="if(confirm('really want to Delete this Project?'))location.href='/project/delete/{{ project.id }}';">Delete</button></td>
+                  </tr>      
+              {% endfor %}
+            </tbody>
+          </table>
+      </div>
+    </div>
+
+{% endblock %}    
+
+
+
+          

@@ -1,0 +1,19 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+
+  <div class="bgimg w3-container w3-padding-large w3-grey">
+    <h4 id="upload"><b>Search Project</b></h4>
+
+    <hr class="w3-opacity">
+      <form action="searchaction/" method="post">
+         {% csrf_token %}
+        <div class="w3-section">
+          <label>Project Name</label>
+          <input class="w3-input w3-border" type="text" name="project_name" pattern=".{3,}" required>
+        </div>
+        <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Search</button>
+      </form>
+  </div>
+    
+{% endblock %}    

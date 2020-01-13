@@ -1,0 +1,67 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+
+
+<script>
+$(document).ready(function() {
+
+  $('.submit_on_enter').keydown(function(event) {
+    // enter has keyCode = 13, change it if you want to use another button
+    if (event.keyCode == 13) {
+      this.form.submit();
+      return false;
+    }
+  });
+
+});
+</script>
+
+    <div class="bgimg w3-container w3-padding-large w3-grey">
+        <h2 style="float:left;" id="projects"><b>Reviews for: {{ this_commit.commit_title }}</b></h2>
+        <button style="float:right;" onclick="location.href='/projects/commits/{{ this_commit.project.id }}';">Back to Commits</button>
+        <br><br>
+        <hr class="w3-opacity">
+        
+        <div style="clear:both;"></div>
+          
+        
+        <div class="w3-row-padding w3-light-grey">
+          <br>
+          <table id="mytable">
+            <thead>  
+              <tr>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Sl No.</font></b></h5></th>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Review Id</font></b></h5></th>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Review </font></b></h5></th>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Reviewer Name </font></b></h5></th>
+                <th style = "text-align: center;" ><h5><b><font color = "blue"> Time of Review </font></b></h5></th>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Usefulness </font></b></h5></th>
+                <th style = "text-align: center;"><h5><b><font color = "blue"> Edit </font></b></h5></th>
+              </tr>
+            </thead>
+            <tbody>    
+              {% for review in reviews %}
+                <tr>
+                  <td class="w3-container w3-padding-32 w3-white" style="width: 3%; text-align: center;"> <h5> <b>{{ forloop.counter  }}</b></h></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"> <h5> <b>{{ review.review_id  }}</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style="width: 30%; text-align: center;"> <a href="/projects/review/{{ review.id }}" class="w3-bar-item w3-button w3-padding" style="white-space:pre-wrap;"><h5> <b>{{ review.review  }}</b></h5></a></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>{{ review.reviewer  }}</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>{{ review.review_time  }}</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>{{ review.usefulness  }}</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;">
+                    <form action="/usefulness/update/" method="post">
+                    {% csrf_token %}
+                      <input class="submit_on_enter" type="text" name="usefulness" placeholder={{ review.usefulness  }} required>
+                      <input class="w3-input w3-border" type="hidden" name="review_id" value={{review.id}}>
+                    </form>
+                  </td>
+
+               </tr>      
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+ 
+{% endblock %}        

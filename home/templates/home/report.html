@@ -1,0 +1,35 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+
+  <div class="bgimg w3-container w3-padding-large w3-grey" style = "min-height: 500px">
+    <h2 id="upload"><b>Choose Type of Report</b></h2>
+
+    <hr class="w3-opacity">
+      <div class="w3-row-padding w3-light-grey" style="width: 50%;">
+          <table id="mytable">
+            <thead>  
+              <tr>
+                <th style = "text-align: center;"> <h5><b><font color = "blue"> Sl No. </font></b></h5></th>
+                <th style = "text-align: center;"> <h5><b><font color = "blue">Report Type </font></b></h5></th>
+              </tr>
+            </thead>
+            <tbody>    
+                <tr>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>(1)</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"> <a href="/report/projectwise" class="w3-bar-item w3-button w3-padding"><h5><b>Project Wise</b><h5></td>
+               </tr> 
+               <tr>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>(2)</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"> <a href="/report/reviewerwise" class="w3-bar-item w3-button w3-padding"><h5><b>Reviewer Wise</b><h5></td>
+               </tr>
+               <tr>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"><h5> <b>(3)</b></h5></td>
+                  <td class="w3-container w3-padding-32 w3-white" style = "text-align: center;"> <a href="/report/yearwise" class="w3-bar-item w3-button w3-padding"><h5><b>Year Wise</b><h5></td>
+               </tr>     
+            </tbody>
+          </table>
+        </div>
+  </div>
+    
+{% endblock %}    

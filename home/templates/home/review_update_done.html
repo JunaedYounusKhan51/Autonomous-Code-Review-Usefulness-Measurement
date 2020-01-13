@@ -1,0 +1,16 @@
+review_update_done.html
+{% extends "./template.html" %}
+
+{% block page_data %}    
+    <div class="bgimg w3-container w3-padding-large w3-grey">
+    	<h4><b>Usefulness Updated Successfully</b></h4>
+    	<hr class="w3-opacity"> 
+    	Review: <b>{{review}}</b>
+    	<br>
+    	Previous Usefulness: <b>{{old_usefulness}}</b>
+    	<br>
+    	New Usefulness: <b>{{new_usefulness}}</b>
+    	<br>
+    </div>
+
+{% endblock %}          

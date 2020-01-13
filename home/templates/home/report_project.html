@@ -1,0 +1,27 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+
+  <div class="bgimg w3-container w3-padding-large w3-grey" style = "min-height: 500px">
+    <h2 id="upload"><b>Project wise Report</b></h2>
+
+    <hr class="w3-opacity">
+      <form action="/report/projectwisecreate/" method="post">
+      {% csrf_token %}
+      <div class="w3-section">
+        <label><b><font color = "black">Project Name</font></b></label>
+        <input class="w3-input w3-border" type="text" name="project_name" required>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Number of Reviewers</font></b></label>
+        <input class="w3-input w3-border" type="text" name="number_of_reviewers" required>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Minimum Number of Reviews done</font></b></label>
+        <input class="w3-input w3-border" type="text" name="number_of_reviews" required>
+      </div>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Create Report</button>
+    </form>
+  </div>
+    
+{% endblock %}    

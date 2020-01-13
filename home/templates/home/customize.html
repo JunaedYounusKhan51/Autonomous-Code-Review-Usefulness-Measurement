@@ -1,0 +1,40 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+ 
+ <div class="bgimg w3-container w3-padding-large w3-grey">
+    <h4 id="upload"><b>Customize Roles</b></h4>
+     <hr class="w3-opacity">
+    <div class="w3-bar-block">
+      {% for role in roles %}
+        <a href="/customize/{{ role.id }}" class="w3-bar-item w3-button w3-padding">{{ role.role_name }}</a>
+      {% endfor %}
+    </div>
+  </div>
+  <!--upload end -->
+
+  {% if this_role %}
+  <div class="w3-container w3-padding-large w3-grey">
+    <h4 id="add_projects"><b>Customize for Role "{{ this_role.role_name }}"</b></h4>
+    
+    <hr class="w3-opacity">
+    <form action="/customize/update/" method="post">
+      {% csrf_token %}
+      <div class="w3-section">
+        <input type="hidden" name="role_id" value="{{ this_role.id }}">
+        <select class="w3-input w3-border" multiple size="5" name="role_menus">
+          {% for menu in menu_list %}
+            {% if menu.menu_path not in request.path %}                  
+              <option value="{{ menu.id }}" {{ menu.flag }}>{{ menu.menu_name }}</option>              
+            {% endif %}
+          {% endfor %}
+        </select>        
+      </div>      
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Update</button>
+      <button class="w3-button w3-blue w3-margin-bottom" onclick="location.href='/customize/';">Close</button>
+    </form>
+  </div>
+  {% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "./template.html" %}
+
+{% block page_data %}
+  
+  <div class="bgimg w3-container w3-padding-large w3-grey">
+    <h2 id="add_projects"><b><font color = "black">Add A Project</font></b></h2>
+
+    <hr class="w3-opacity">
+    <form action="/project/add/" method="post">
+      {% csrf_token %}
+      <div class="w3-section">
+        <label><b><font color = "black">Project Name</font></b></label>
+        <input class="w3-input w3-border" type="text" name="name" required>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Project Url</font></b></label>
+        <input class="w3-input w3-border" type="text" name="url" required>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Project Description</font></b></label>
+        <textarea class="w3-input w3-border" rows="5" name="description"></textarea>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Project Authors</font></b></label>
+        <select class="w3-input w3-border" multiple size="5" name="authors">
+          {% for author in authors %}            
+            <option value="{{ author.id }}">{{ author.userid }}</option>                          
+          {% endfor %}
+        </select>
+      </div>
+      <div class="w3-section">
+        <label><b><font color = "black">Project Image</font></b></label>
+        <input type="file" name="image">        
+      </div>
+      <button type="submit" class="w3-button w3-black w3-margin-bottom"><i class="fa fa-paper-plane w3-margin-right"></i>Add Project</button>
+    </form>
+  </div>
+  
+
+{% endblock %}         
